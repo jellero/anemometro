@@ -1,36 +1,63 @@
-# MicroWind V1.0 — Anemometro ultrasonico
+# MicroWind V1.0 — anemometro ultrasonico
 
-Repository del progetto **MicroWind V1.0**, revisione preliminare EasyEDA Pro.
+**Progetto EasyEDA Pro, revisione PCB preliminare Ø96 mm. BOZZA — NON FABBRICARE.**
 
-## Anteprima PCB
+Il repository contiene il **sorgente CAD completo così come ricevuto**, le esportazioni documentali generate direttamente dal suo contenuto e una relazione con caratteristiche e punti ancora da validare. Non sono disponibili piste tracciate o Gerber di produzione.
 
-![Vista PCB MicroWind V1.0](docs/MicroWind_PCB_preliminare.svg)
+## Anteprima ricostruita dai dati della PCB
 
-La figura SVG è una **ricostruzione vettoriale dell'anteprima di disposizione preliminare**, non una fotografia della scheda né un'immagine esportata dal CAD. Per la geometria effettiva fare riferimento al file `.epro`. **Non è un progetto pronto per la fabbricazione.**
+![MicroWind: centri e piazzole realmente estratti dal file EasyEDA](exports/pcb_posizionamento_estratto.svg)
 
-## File sorgente
-- `MicroWind_V1_REVISED_V2.epro`: archivio nativo **EasyEDA Pro** fornito il 15 novembre 2026.
-- SHA-256 del file .epro: `5c6a0a9d55ca022c4b179bce252425cc8226c62513541a037e24f74b22051c63`.
-- Contiene **5 fogli di schema elettrico**, **1 layout PCB**, librerie interne di simboli e footprint.
+> L'SVG sopra è una rappresentazione **automatica delle coordinate e piazzole** presenti nel file CAD, **non** un rendering ufficiale di EasyEDA e **non** una PCB instradata. Il sorgente da verificare nell'EDA è il file `.epro`.
 
-## Predisposizione collegamenti a saldare
+## Sorgente e dettagli
+
+- [Progetto nativo EasyEDA Pro `MicroWind_V1_REVISED_V2.epro`](MicroWind_V1_REVISED_V2.epro)
+- [Dettagli tecnici verificati, blocchi funzionali, pin di batteria/pannello e criticità](docs/DETTAGLI_TECNICI.md)
+- [Indice delle esportazioni e limiti](exports/LEGGIMI.md)
+
+## Esportazioni verificabili
+
+| File | Contenuto |
+|---|---|
+| [BOM_componenti.csv](exports/BOM_componenti.csv) | **104 componenti**: riferimento, valore, foglio, posizione e footprint |
+| [netlist_pads.csv](exports/netlist_pads.csv) | **305 associazioni** tra pin/piazzole e reti |
+| [netlist_reti.csv](exports/netlist_reti.csv) | **73 reti** con i relativi terminali |
+| [pin_footprint.csv](exports/pin_footprint.csv) | Geometria locale di tutte le piazzole dei footprint |
+| [connettori_saldatura.csv](exports/connettori_saldatura.csv) | Coordinate, pin e reti di **batteria, pannello e 4 sensori** |
+| [fori_meccanici.csv](exports/fori_meccanici.csv) | Geometria dei **12 record MH** sul layer MULTI |
+| [fogli_schema.csv](exports/fogli_schema.csv) | POWER, MCU, TEST, ACOUSTIC, PIEZO |
+| [pcb_posizionamento_estratto.svg](exports/pcb_posizionamento_estratto.svg) | Vista vettoriale generata dai componenti e dai footprint presenti nel CAD |
+
+## Collegamenti a saldare
 
 | Connettore | Pin | Rete |
-|---|---|---|
-| JPV (pannello solare) | 1 | PV_RAW |
-| JPV | 2 | GND |
-| JBAT (batteria) | 1 | BAT |
-| JBAT | 2 | GND |
-| JBAT | 3 | TS_BAT (NTC batteria) |
-| JP_N / JP_E / JP_S / JP_W | 1 | PZ_N / PZ_E / PZ_S / PZ_W rispettivamente |
+|---|---:|---|
+| JPV (pannello solare) | 1 | PV_RAW (positivo) |
+| JPV | 2 | GND (negativo) |
+| JBAT (batteria) | 1 | BAT (+) |
+| JBAT | 2 | GND (−) |
+| JBAT | 3 | TS_BAT (NTC) |
+| JP_N / JP_E / JP_S / JP_W | 1 | PZ_N / PZ_E / PZ_S / PZ_W |
 | JP_N / JP_E / JP_S / JP_W | 2 | GND |
 
-Le reti sopra riportate sono state lette dai record PAD_NET del PCB nell'archivio .epro.
+## Rigenera ogni dato dal file sorgente
 
-## Stato e limiti della revisione
+```bash
+python3 tools/export_easyeda.py MicroWind_V1_REVISED_V2.epro exports
+```
 
-**BOZZA — NON FABBRICARE.** I 5 fogli schema sono esplicitamente marcati come bozze. Il file PCB contiene 104 componenti, 73 reti e 305 associazioni piazzola/rete, ma **non contiene record di piste tracciate o via**.
+Le esportazioni vengono rigenerate anche dalla [GitHub Action](.github/workflows/export-easyeda.yml) quando cambia il progetto o lo script. Non sono esportazioni scritte manualmente.
 
-Prima della produzione sono necessari la verifica dei footprint e dei pinout, la progettazione del routing e dei piani di massa, la verifica della zona RF dell'ESP32-C6, il controllo della parte analogica a 40 kHz e l'esecuzione di ERC/DRC nell'EDA. Non è documentata alcuna validazione elettrica o meccanica completa.
+SHA-256 sorgente: `5c6a0a9d55ca022c4b179bce252425cc8226c62513541a037e24f74b22051c63`.
 
-Il file è un *punto di partenza*, non Gerber pronti per l'ordine.
+## Stato e blocchi da completare
+
+- **Schema:** da validare elettricamente e tramite ERC.
+- **PCB:** componenti posizionati; `TRACK=0`, `VIA=0`; routing e piani massa mancanti.
+- **Footprint:** da verificare contro datasheet e libreria produttore, soprattutto ESP32-C6, ricarica, driver, RF e analogica a 40 kHz.
+- **Meccanica:** confermare fori, altezza e inclinazione dei trasduttori, riflettore e antenna.
+- **Alimentazione:** verificare compatibilità effettiva del circuito di carica con LiFePO₄ 1S, batteria protetta, pannello e sensore termico.
+- **Fabbricazione:** non sono presenti Gerber o forature finali verificate. Eseguire DRC e revisioni prima di ordinare.
+
+**Non considerare valori/posizioni estratti dal file come validati per la produzione.**
