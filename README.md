@@ -9,6 +9,16 @@
 
 Il repository contiene il **sorgente CAD completo così come ricevuto**, le esportazioni documentali generate direttamente dal suo contenuto e una relazione con caratteristiche e punti ancora da validare. Non sono disponibili piste tracciate o Gerber di produzione.
 
+## Compatibilità e importazione con EasyEDA Pro V3.2.209
+
+Utente: **EasyEDA Professional V3.2.209 (2026-10-21)**. L'archivio `MicroWind_V1_REVISED_V2.epro` contiene dati nel formato **EasyEDA Pro V2** (`config.editorVersion=2.2.48.10`), mentre il formato nativo V3 è **`.epro2`**. **V3 supporta l'importazione di V2**: lo scarto di versione da solo non dimostra la causa del progetto vuoto.
+
+**Tentativo di import corretto:** dalla pagina iniziale di EasyEDA V3 scegliere **Import Professional**, selezionare il file `.epro`, completare l'importazione e verificare nell'albero la PCB `MicroWind_V1_96mm_PRELIM` e i 5 fogli. Non creare prima un progetto vuoto, e non scegliere *Import Standard*. Se non funziona, il file non è validato e occorre correggere il pacchetto/riesportarlo con l'editor; rinominarlo da `.epro` a `.epro2` non è una conversione.
+
+- [Guida ufficiale di import EasyEDA Pro](https://prodocs.easyeda.com/en/import-export/import-easyeda-pro/)
+- [Specifiche ufficiali V2](https://github.com/easyeda/easyeda-file-format-v2)
+- [Issue #1: importazione non funzionante](https://github.com/jellero/anemometro/issues/1)
+
 ## Anteprima ricostruita dai dati della PCB
 
 ![MicroWind: centri e piazzole realmente estratti dal file EasyEDA](exports/pcb_posizionamento_estratto.svg)
