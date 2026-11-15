@@ -1,5 +1,10 @@
 # MicroWind V1.0 — anemometro ultrasonico
 
+> [!WARNING]
+> **IMPORTAZIONE EASYEDA NON ANCORA FUNZIONANTE / NON VALIDATA.** L'utente ha segnalato che importando il file `.epro` da un progetto vuoto non compaiono schemi né PCB. L'archivio contiene dati CAD (verifica statica), ma **non abbiamo una prova di apertura nell'editor**. Non considerare il progetto una PCB EasyEDA operativa. Vedi [problema aperto #1](https://github.com/jellero/anemometro/issues/1).
+>
+> **Procedura ufficiale da provare:** usare **EasyEDA Pro → File → Importa → EasyEDA Professional** (oppure importare dalla pagina iniziale), senza creare prima un progetto vuoto. Il pacchetto è in formato Pro V2 (`editorVersion 2.2.48.10`), distinto da EasyEDA Standard.
+
 **Progetto EasyEDA Pro, revisione PCB preliminare Ø96 mm. BOZZA — NON FABBRICARE.**
 
 Il repository contiene il **sorgente CAD completo così come ricevuto**, le esportazioni documentali generate direttamente dal suo contenuto e una relazione con caratteristiche e punti ancora da validare. Non sono disponibili piste tracciate o Gerber di produzione.
@@ -12,7 +17,7 @@ Il repository contiene il **sorgente CAD completo così come ricevuto**, le espo
 
 ## Sorgente e dettagli
 
-- [Progetto nativo EasyEDA Pro `MicroWind_V1_REVISED_V2.epro`](MicroWind_V1_REVISED_V2.epro)
+- [Archivio generato nel formato EasyEDA Pro V2 (importazione non validata) `MicroWind_V1_REVISED_V2.epro`](MicroWind_V1_REVISED_V2.epro)
 - [Sorgenti CAD estratti, consultabili singolarmente](cad_unpacked/) — **216 file**: `project.json`, 5 schemi `.esch`, 1 PCB `.epcb`, 104 footprint `.efoo`, 105 simboli `.esym`
 - [Dettagli tecnici verificati, blocchi funzionali, pin di batteria/pannello e criticità](docs/DETTAGLI_TECNICI.md)
 - [Indice delle esportazioni e limiti](exports/LEGGIMI.md)
