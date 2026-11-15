@@ -1,5 +1,8 @@
 # MicroWind V1.0 — anemometro ultrasonico
 
+> [!CAUTION]
+> **RISULTATO IMPORT V3 (15/11/2026): PCB INCOMPLETA — SOLO CONTORNO E FORI.** L'utente ha importato `MicroWind_V1_EasyEDA_Pro_V3.epro2` in EasyEDA Pro V3.2.209: i componenti **non vengono mostrati**. Questa revisione non è valida per lavorare sulla PCB. Il problema è documentato in [issue #1](https://github.com/jellero/anemometro/issues/1); non considerare superato il test d'apertura solo perché il file contiene record COMPONENT.
+
 > [!WARNING]
 > **IMPORTAZIONE EASYEDA NON ANCORA FUNZIONANTE / NON VALIDATA.** L'utente ha segnalato che importando il file `.epro` da un progetto vuoto non compaiono schemi né PCB. L'archivio contiene dati CAD (verifica statica), ma **non abbiamo una prova di apertura nell'editor**. Non considerare il progetto una PCB EasyEDA operativa. Vedi [problema aperto #1](https://github.com/jellero/anemometro/issues/1).
 >
