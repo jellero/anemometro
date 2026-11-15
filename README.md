@@ -9,6 +9,17 @@
 
 Il repository contiene il **sorgente CAD completo così come ricevuto**, le esportazioni documentali generate direttamente dal suo contenuto e una relazione con caratteristiche e punti ancora da validare. Non sono disponibili piste tracciate o Gerber di produzione.
 
+## Revisione per EasyEDA Pro V3.2.209 — conversione sperimentale
+
+- **[Scarica il progetto V3: `MicroWind_V1_EasyEDA_Pro_V3.epro2`](MicroWind_V1_EasyEDA_Pro_V3.epro2)**
+- [Rapporto di conversione e controlli statici](docs/MicroWind_V3_VERIFICA.md)
+- [Script Python riproducibile di conversione V2 → V3](tools/convert_microwind_v3.py)
+- SHA-256 del file V3: `e159723824ce9f2c1abb3605fead0993f2f4ec69c46667bb9cdcc9e6b10a46e2`.
+
+**Stato:** candidato per importazione, **NON ancora aperto/verificato nell'applicazione EasyEDA V3.2.209**. La validazione statica del ZIP e dei collegamenti interni non equivale alla verifica di caricamento dell'editor; [issue #1 rimane aperta](https://github.com/jellero/anemometro/issues/1). Il file V2 originale non è stato sostituito.
+
+**Come provare:** nella pagina iniziale di EasyEDA Professional V3 selezionare **Import Professional**, poi il file `.epro2`; verificare che compaiano i 5 fogli POWER, MCU, TEST, ACOUSTIC, PIEZO e il layout PCB `MicroWind_V1_96mm_PRELIM`. Il layout è preliminare, senza piste, ERC o DRC finalizzati.
+
 ## Compatibilità e importazione con EasyEDA Pro V3.2.209
 
 Utente: **EasyEDA Professional V3.2.209 (2026-10-21)**. L'archivio `MicroWind_V1_REVISED_V2.epro` contiene dati nel formato **EasyEDA Pro V2** (`config.editorVersion=2.2.48.10`), mentre il formato nativo V3 è **`.epro2`**. **V3 supporta l'importazione di V2**: lo scarto di versione da solo non dimostra la causa del progetto vuoto.
