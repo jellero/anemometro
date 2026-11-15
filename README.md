@@ -13,6 +13,7 @@ Il repository contiene il **sorgente CAD completo così come ricevuto**, le espo
 ## Sorgente e dettagli
 
 - [Progetto nativo EasyEDA Pro `MicroWind_V1_REVISED_V2.epro`](MicroWind_V1_REVISED_V2.epro)
+- [Sorgenti CAD estratti, consultabili singolarmente](cad_unpacked/) — **216 file**: `project.json`, 5 schemi `.esch`, 1 PCB `.epcb`, 104 footprint `.efoo`, 105 simboli `.esym`
 - [Dettagli tecnici verificati, blocchi funzionali, pin di batteria/pannello e criticità](docs/DETTAGLI_TECNICI.md)
 - [Indice delle esportazioni e limiti](exports/LEGGIMI.md)
 
