@@ -2,6 +2,12 @@
 
 Repository del progetto **MicroWind V1.0**, revisione preliminare EasyEDA Pro.
 
+## Anteprima PCB
+
+![Vista PCB MicroWind V1.0](docs/MicroWind_PCB_preliminare.svg)
+
+La figura SVG è una **ricostruzione vettoriale dell'anteprima di disposizione preliminare**, non una fotografia della scheda né un'immagine esportata dal CAD. Per la geometria effettiva fare riferimento al file `.epro`. **Non è un progetto pronto per la fabbricazione.**
+
 ## File sorgente
 - `MicroWind_V1_REVISED_V2.epro`: archivio nativo **EasyEDA Pro** fornito il 15 novembre 2026.
 - SHA-256 del file .epro: `5c6a0a9d55ca022c4b179bce252425cc8226c62513541a037e24f74b22051c63`.
