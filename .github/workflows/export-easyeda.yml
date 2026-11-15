@@ -1,0 +1,30 @@
+name: Esporta dettagli EasyEDA Pro
+on:
+  push:
+    branches: [main]
+    paths:
+      - "MicroWind_V1_REVISED_V2.epro"
+      - "tools/export_easyeda.py"
+      - ".github/workflows/export-easyeda.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Genera BOM, netlist, geometria e preview
+        run: python3 tools/export_easyeda.py MicroWind_V1_REVISED_V2.epro exports
+      - name: Registra nel repository le esportazioni
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add exports
+          if ! git diff --cached --quiet; then
+            git commit -m "build: aggiorna esportazioni EasyEDA dal sorgente .epro"
+            git push
+          fi
